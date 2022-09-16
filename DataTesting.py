@@ -14,7 +14,24 @@ table_details = pd.read_csv(r"C:\Users\Anjali_SEQ\Downloads\Details_for_Automati
 
 
 def parsetolist(head):
-    return head.split(',')
+    if "," in head:
+        return head.split(',')
+    else:
+        list = [head]
+        return list
+
+def  correct_rundateCol():
+    column_name = ["RunDate","RUNDATE","RUN_DATE","LoadDate","LOADDATE","SCRAPE_DATE","Run Date"]
+    rundateCol = ""
+    for File in range(len(data_file)):
+        for column in column_name:
+            try :
+                data_file[column].iloc[File]            
+                rundateCol = column
+                break
+            except:
+                pass
+    return rundateCol
 
 class DataTesting:
 
@@ -58,20 +75,22 @@ class DataTesting:
         return "Column Count And Sequence is Correct"
 
 
-    ## def validateDataTime(self):
-    ##     # Validate RunDate Column
-    ##     runDateResult = ""
-    ##     for DataFile in range(len(self.file)):
-    ##         rundate = self.file['run_date'].iloc[DataFile]
+    def validateDataTime(self):
+            print(correct_rundateCol())
+            '''
+        # Validate RunDate Column
+        runDateResult = ""
+        for DataFile in range(len(self.file)):
+            rundate = self.file[rundateCol].iloc[DataFile]
 
-    ##         if type(rundate) != str:
-    ##             continue
-    #        
-    ##         if datetime.strftime(parse(rundate).date(),"%Y-%m-%d") and time.strftime(parse(rundate).time(),'%H:%M:%S') and parse(rundate).tzinfo != None:    
-    ##             runDateResult = "RunDate Format is correct"
-    ##         else:
-    ##             runDateResult = "RunDate Incorrect"
-    ##             break
+            if type(rundate) != str:
+                continue
+        #    
+            if datetime.strftime(parse(rundate).date(),"%Y-%m-%d") and time.strftime(parse(rundate).time(),'%H:%M:%S') and parse(rundate).tzinfo != None:    
+                runDateResult = "RunDate Format is correct"
+            else:
+                runDateResult = "RunDate Incorrect"
+                break
 
         # Validate RunTime Column
         runTimeResult = ""
@@ -87,24 +106,29 @@ class DataTesting:
                 runTimeResult = "RunTime Incorrect"
                 break
 
-        return [runDateResult,runTimeResult]
+        return [runDateResult,runTimeResult] '''
 
 
-    ##def validateUniqueCol(self):
-    ##    if self.file['SkuUuid'].is_unique:
-    ##        return "SkuUuid Are Unique"
-    ##    return "Duplicate SkuUuid Available"
+    def validateUniqueCol(self):
+        null = []
+
+        for col in parsetolist(self.UniqueCol):
+            if self.file[self.UniqueCol].is_unique:
+                null.append(col)
+
+        if len(null):
+            return f"No Fields Are dublicate Which Are Set To Be Unique : {parsetolist(self.UniqueCol)}"
+        return f"These Fields Are Set To Be Unique, but Still Containing dublicate Values : {null} ."
+
 
 
     def validateNonNullColumns(self):
         columnPerc = dict(self.file[self.file.columns[self.file.notnull().any()]].notnull().sum() * 100 / self.file.shape[0])
         
         # print(columnPerc.keys())
-        #Providing those column names which should contains 100% values.
-        print(parsetolist(self.nonNull))
+        # print(parsetolist(self.nonNull))
         null = []
         for col in parsetolist(self.nonNull):
-            print(col)
             if columnPerc[col] != 100.0:
                 null.append(col)
 # 
@@ -160,11 +184,11 @@ class DataTesting:
 datafile = DataTesting(data_file)
 
 # print(datafile.validateColumns())
-## print(datafile.validateDataTime())
-## print(datafile.validateUniqueCol()) 
-print(datafile.validateNonNullColumns())
-## print(datafile.validateCategoryWiseCount())
-## print(datafile.validateCompleteBlankCol())
+print(datafile.validateDataTime())
+# print(datafile.validateUniqueCol()) 
+# print(datafile.validateNonNullColumns())
+# print(datafile.validateCategoryWiseCount())
+# print(datafile.validateCompleteBlankCol())
 
 # Report = f"1.{datafile.validateColumns()}\n\n3.{datafile.validateNonNullColumns()}\n4.{datafile.validateCategoryWiseCount()}\n5.{datafile.validateCompleteBlankCol()}"
 # print(Report)
