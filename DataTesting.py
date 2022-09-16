@@ -6,7 +6,6 @@ import json
 
 
 
-# Data testing for flightclub_newRelease_neustreet
 
 agent_name_input = "redfin"
 data_file = pd.read_csv(r"C:\Users\Anjali_SEQ\Desktop\Redfin_testing_Files\2022-09-13T16.35.00Z_redfin.csv",encoding='utf-8-sig') #read input file
