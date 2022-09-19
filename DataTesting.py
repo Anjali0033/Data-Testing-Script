@@ -75,37 +75,45 @@ class DataTesting:
 
 
     def validateDataTime(self):
-            print(correct_rundateCol())
-            '''
+        # Validate RunDate Column format
+        rundate_format = ""
+        column_name = ["RunDate","RUNDATE","RUN_DATE","LoadDate","LOADDATE","SCRAPE_DATE","Run Date","Rundate"]
+        for col_format in self.file.columns.tolist():
+            for run_format in column_name:
+                if run_format == col_format:
+                    rundate_format = run_format
+                    break
+        print(rundate_format)
+
         # Validate RunDate Column
         runDateResult = ""
         for DataFile in range(len(self.file)):
-            rundate = self.file[rundateCol].iloc[DataFile]
-
+            rundate = self.file[rundate_format].iloc[DataFile]
+            print(rundate)
             if type(rundate) != str:
                 continue
-        #    
+            
             if datetime.strftime(parse(rundate).date(),"%Y-%m-%d") and time.strftime(parse(rundate).time(),'%H:%M:%S') and parse(rundate).tzinfo != None:    
                 runDateResult = "RunDate Format is correct"
             else:
                 runDateResult = "RunDate Incorrect"
                 break
 
-        # Validate RunTime Column
-        runTimeResult = ""
-        for DataFile in range(len(self.file)):
-            runtime = self.file['rundate_time'].iloc[DataFile]
+    ##    # Validate RunTime Column
+    ##    runTimeResult = ""
+    ##    for DataFile in range(len(self.file)):
+    ##        runtime = self.file['rundate_time'].iloc[DataFile]
+    ##
+    ##        if type(runtime) != str:
+    ##            continue
+    ##        
+    ##        if datetime.strftime(parse(runtime).date(),"%d-%m-%Y") and time.strftime(parse(runtime).time(),'%H:%M:%S'):    
+    ##            runTimeResult = "RunTime Format is correct"
+    ##        else:
+    ##            runTimeResult = "RunTime Incorrect"
+    ##            break
 
-            if type(runtime) != str:
-                continue
-            
-            if datetime.strftime(parse(runtime).date(),"%d-%m-%Y") and time.strftime(parse(runtime).time(),'%H:%M:%S'):    
-                runTimeResult = "RunTime Format is correct"
-            else:
-                runTimeResult = "RunTime Incorrect"
-                break
-
-        return [runDateResult,runTimeResult] '''
+        return [runDateResult] #,runTimeResult
 
 
     def validateUniqueCol(self):
