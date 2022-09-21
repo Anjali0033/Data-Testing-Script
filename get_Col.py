@@ -1,5 +1,5 @@
 import pandas as pd
-df= pd.read_csv(r'C:\Users\Anjali_SEQ\Desktop\milled_Test_20220920_003504.csv')
+df= pd.read_csv(r'C:\Users\Anjali_SEQ\Downloads\2022.09.21 07.25.38Z_autotrader.csv')
 
 Total_count_of_0_col = df[df.columns[0]].count()
 value = []
@@ -13,4 +13,4 @@ for i in column_names:
 col_name = list_string[:-1]
 colwise = dict(zip(column_names, value))
 
-print("column_names : ",col_name,"\n","Column wise Percentage : ",colwise)
+print("column_names : ",col_name,"\n\n","Column wise Percentage : ",colwise,"\n\n","Number of column : ",len(df.axes[1]))
