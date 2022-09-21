@@ -1,5 +1,5 @@
 import pandas as pd
-df= pd.read_csv(r'C:\Users\Anjali_SEQ\Downloads\20220921_091745_opendoor_events.csv')
+df= pd.read_csv(r'C:\Users\Anjali_SEQ\Downloads\2022-09-19T22.45.35Z_pcpartpicker.csv')
 
 Total_count_of_0_col = df[df.columns[0]].count()
 value = []
@@ -7,7 +7,7 @@ list_string = ""
 column_names = df.columns
 for i in column_names:
     percent = ((df[i].count())/Total_count_of_0_col) * 100
-    value.append(float("%.2f"% percent)-5)
+    value.append("%.2f"% percent)
     list_string += i + ","
 
 col_name = list_string[:-1]
