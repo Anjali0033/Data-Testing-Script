@@ -8,8 +8,8 @@ import json
 # Data testing for flightclub_newRelease_neustreet
 
 agent_name_input = "careers_aldi"
-data_file = pd.read_csv(r"C:\Users\Anjali_SEQ\Downloads\careers_aldi_20220920_084020.csv",encoding='utf-8-sig') #read input file
-table_details = pd.read_csv(r"C:\Users\Anjali_SEQ\Downloads\Details_for_Automation - Citadel Survey Capital.csv", encoding= 'unicode_escape') #read input file
+data_testing_file = pd.read_csv(r"C:\Users\Anjali_SEQ\Downloads\careers_aldi_20220920_084020.csv",encoding='utf-8-sig') #read input file
+input_table_details = pd.read_csv(r"C:\Users\Anjali_SEQ\Downloads\Details_for_Automation - Citadel Survey Capital.csv", encoding= 'unicode_escape') #read input file
 column_name = ["RunDate","RUNDATE","RUN_DATE","LoadDate","LOADDATE","SCRAPE_DATE","Run Date","Rundate","run_date","Date","scrape_date"]
 
 
@@ -20,7 +20,7 @@ class DataTesting:
 
     def __init__(self,file):
         self.file = file
-        self.csv = table_details[table_details.Agent_name == agent_name_input].iloc[0]
+        self.csv = input_table_details[input_table_details.Agent_name == agent_name_input].iloc[0]
         self.agentOrganisation = self.csv['Agent_organisation']
         self.agentName = self.csv['Agent_name']
         self.ColumnsNames = self.csv['column_names(in correct sequence)']
@@ -30,7 +30,7 @@ class DataTesting:
         self.UniqueCol = self.csv['Unique_columns(if any)']
         self.colWiseCount = self.csv['column_wise_percentage']
         
-        self.colNames = list(data_file.head())
+        self.colNames = list(data_testing_file.head())
 
 
     def validateColumns(self):
@@ -169,7 +169,7 @@ class DataTesting:
             errors = []
             for col in self.colNames:
                 result = False
-                for row in data_file[col]:
+                for row in data_testing_file[col]:
                     if type(row) != float:
                         result = True
                         break
@@ -194,7 +194,7 @@ class DataTesting:
         
 
 
-datafile = DataTesting(data_file)
+datafile = DataTesting(data_testing_file)
 
 Report = 70*'-' + f"\nData Testing report for {agent_name_input} agent\n"
 
