@@ -7,9 +7,9 @@ import json
 
 # Data testing for flightclub_newRelease_neustreet
 
-agent_name_input = "careers_aldi"
-data_testing_file = pd.read_csv(r"C:\Users\Anjali_SEQ\Downloads\careers_aldi_20220920_084020.csv",encoding='utf-8-sig') #read input file
-input_table_details = pd.read_csv(r"C:\Users\Anjali_SEQ\Downloads\Details_for_Automation - Citadel Survey Capital.csv", encoding= 'unicode_escape') #read input file
+agent_name_input = "mobakumap"
+data_testing_file = pd.read_csv(r"C:\Users\Anjali_SEQ\Downloads\mobakumap_timeseries_20220930_042250.csv",encoding='utf-8-sig') #read input file
+input_table_details = pd.read_csv(r"C:\Users\Anjali_SEQ\Downloads\Details_for_Automation - woodline.csv", encoding= 'unicode_escape') #read input file
 column_name = ["RunDate","RUNDATE","RUN_DATE","LoadDate","LOADDATE","SCRAPE_DATE","Run Date","Rundate","run_date","Date","scrape_date"]
 
 

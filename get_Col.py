@@ -1,5 +1,5 @@
 import pandas as pd
-df= pd.read_csv(r'C:\Users\Anjali_SEQ\Downloads\2022-09-19T22.45.35Z_pcpartpicker.csv')
+df= pd.read_csv(r'C:\Users\Anjali_SEQ\Downloads\mobakumap_timeseries_20220930_042250.csv')
 
 Total_count_of_0_col = df[df.columns[0]].count()
 value = []
