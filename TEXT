@@ -1,12 +1,5 @@
-1.  MCS 014  -> 6/01/2023
-2.  MCS021   ->   --
-3.  MCS 023  -> 27/12/2022
-4.  BCS 031  -> 13/12/2022
-5.  BCS 040  -> 14/12/2022
-6.  MCS 024  -> 28/12/2022
-7.  BCS 041  -> 15/12/2022
-8.  BCS 042  -> 16/12/2022
-9.  MCSL016  ->    --
-10. BCSL 043 ->    --
-11. BCSL044  -> 2/12/2022
-12. BCSL045  ->    --
+https://www.zillow.com/search/GetSearchPageState.htm?searchQueryState={%22pagination%22:{%22currentPage%22:1},%22mapBounds%22:{%22west%22:-122.4029736328125,%22east%22:-121.5570263671875,%22south%22:37.14459350814964,%22north%22:37.568131217040865},%22isMapVisible%22:true,%22filterState%22:{%22sortSelection%22:{%22value%22:%22globalrelevanceex%22},%22isAllHomes%22:{%22value%22:true},%22isRecentlySold%22:{%22value%22:true},%22isForSaleByAgent%22:{%22value%22:false},%22isForSaleByOwner%22:{%22value%22:false},%22isNewConstruction%22:{%22value%22:false},%22isComingSoon%22:{%22value%22:false},%22isAuction%22:{%22value%22:false},%22isForSaleForeclosure%22:{%22value%22:false}},%22isListVisible%22:true}&wants={%22cat1%22:[%22listResults%22,%22mapResults%22]}
+
+https://www.zillow.com/search/GetSearchPageState.htm?searchQueryState={%22pagination%22:{%22currentPage%22:1},%22mapBounds%22:{%22west%22:-122.825947265625,%22east%22:-121.134052734375,%22south%22:37.060256981523224,%22north%22:37.65189932875875},%22isMapVisible%22:true,%22filterState%22:{%22isAllHomes%22:{%22value%22:true},%22isForRent%22:{%22value%22:true},%22isForSaleByAgent%22:{%22value%22:false},%22isForSaleByOwner%22:{%22value%22:false},%22isNewConstruction%22:{%22value%22:false},%22isComingSoon%22:{%22value%22:false},%22isAuction%22:{%22value%22:false},%22isForSaleForeclosure%22:{%22value%22:false}},%22isListVisible%22:true,%22mapZoom%22:9}&wants={%22cat1%22:[%22listResults%22,%22mapResults%22]}
+
+https://www.zillow.com/search/GetSearchPageState.htm?searchQueryState={%22pagination%22:{%22currentPage%22:2},%22mapBounds%22:{%22west%22:-122.4029736328125,%22east%22:-121.5570263671875,%22south%22:37.21188573203705,%22north%22:37.50115776747225},%22isMapVisible%22:true,%22filterState%22:{%22sortSelection%22:{%22value%22:%22globalrelevanceex%22},%22isAllHomes%22:{%22value%22:true}},%22isListVisible%22:true}&wants={%22cat1%22:[%22listResults%22,%22mapResults%22],%22cat2%22:[%22total%22]}&requestId=9
