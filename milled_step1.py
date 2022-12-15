@@ -15,12 +15,12 @@ def for_date(date):
 
 def connect_to_snowflake(starting_Date,ending_Date):
   df = pd.DataFrame
-  username = 'seq_admin'
-  password = 'dvrbrt456geSF'
-  account = 'eo33031.us-east-1'
-  warehouse = 'CITADEL_GLOBAL_EQUITIES_WH'
-  database = 'citadel_global_equities'
-  stage_table = 'test_stage'
+  username = ''
+  password = ''
+  account = ''
+  warehouse = ''
+  database = ''
+  stage_table = ''
 
   
   ctx = snowflake.connector.connect(user=username, password=password, account=account)
