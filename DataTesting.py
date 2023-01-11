@@ -3,13 +3,14 @@ from datetime import datetime,time
 from dateutil.parser import parse
 import pandas as pd
 import json
+from pandas._libs.tslibs.parsing import guess_datetime_format
 
 
 # Data testing for flightclub_newRelease_neustreet
 
-agent_name_input = "mobakumap"
-data_testing_file = pd.read_csv(r"C:\Users\Anjali_SEQ\Downloads\mobakumap_timeseries_20220930_042250.csv",encoding='utf-8-sig') #read input file
-input_table_details = pd.read_csv(r"C:\Users\Anjali_SEQ\Downloads\Details_for_Automation - woodline.csv", encoding= 'unicode_escape') #read input file
+agent_name_input = "Mobakumap"
+data_file = pd.read_csv(r"C:\Users\Anjali_SEQ\Downloads\mobakumap_timeseries_20230110_231554.csv",encoding='utf-8-sig') #read input file
+table_details = pd.read_csv(r"C:\Users\Anjali_SEQ\Downloads\Details_for_Automation - woodline.csv", encoding= 'unicode_escape') #read input file
 column_name = ["RunDate","RUNDATE","RUN_DATE","LoadDate","LOADDATE","SCRAPE_DATE","Run Date","Rundate","run_date","Date","scrape_date"]
 
 
@@ -20,17 +21,17 @@ class DataTesting:
 
     def __init__(self,file):
         self.file = file
-        self.csv = input_table_details[input_table_details.Agent_name == agent_name_input].iloc[0]
+        self.csv = table_details[table_details.Agent_name == agent_name_input].iloc[0]
         self.agentOrganisation = self.csv['Agent_organisation']
         self.agentName = self.csv['Agent_name']
         self.ColumnsNames = self.csv['column_names(in correct sequence)']
         self.colCount = self.csv['column_count']
-    ##    self.Rundate_format = self.csv['Rundate_format']
+        self.Rundate_format = self.csv['Rundate_format']
         self.nonNull = self.csv['Not_Null_columns']
         self.UniqueCol = self.csv['Unique_columns(if any)']
         self.colWiseCount = self.csv['column_wise_percentage']
         
-        self.colNames = list(data_testing_file.head())
+        self.colNames = list(data_file.head())
 
 
     def validateColumns(self):
@@ -67,28 +68,23 @@ class DataTesting:
                     if type(rundate) != str:
                         continue
                     
-                    if datetime.strftime(parse(rundate).date(),"%Y-%m-%d") and time.strftime(parse(rundate).time(),'%H:%M:%S') and parse(rundate).tzinfo != None:    
-                        runDateResult = f"Rundate Format is correct"
-                    else:
-                        runDateResult = f"{Rundate} Incorrect Rundate - {rundate}"
-                        break
+                    rundateformat = (guess_datetime_format(rundate, dayfirst=True))
+                    res = True
                     
+                    # using try-except to check for truth value
+                    # print(self.Rundate_format,rundateformat)
+                    try:
+                        res = bool(datetime.strptime(self.Rundate_format, rundateformat))
+                    except ValueError:
+                        res = False
 
-                ## Validate RunTime Column
-                runTimeResult = ""
-                for DataFile in range(len(self.file)):
-                   runtime = self.file[Rundate].iloc[DataFile]
-
-                   if type(runtime) != str:
-                       continue
-                   
-                   if datetime.strftime(parse(runtime).date(),"%d-%m-%Y") and time.strftime(parse(runtime).time(),'%H:%M:%S'):    
-                        runTimeResult = "Runtime Format is correct"
-                   else:
-                        runTimeResult = "{} Incorrect Runtime - {}".format(Rundate,rundate)
+                    if res == True:   
+                        runDateResult = "Rundate Format is correct"
+                    else:
+                        runDateResult = "{} Incorrect Runtime - {}".format(Rundate,rundate)
                         break
         #       
-                return runDateResult,runTimeResult + f" For : {Rundate}(column name)"
+                return runDateResult
 
             else : 
                 return f"Please update column_name of rundate for {agent_name_input} Agent.(To update this , You will find column_name list variable With in script.)"
@@ -169,7 +165,7 @@ class DataTesting:
             errors = []
             for col in self.colNames:
                 result = False
-                for row in data_testing_file[col]:
+                for row in data_file[col]:
                     if type(row) != float:
                         result = True
                         break
@@ -194,17 +190,17 @@ class DataTesting:
         
 
 
-datafile = DataTesting(data_testing_file)
+datafile = DataTesting(data_file)
 
 Report = 70*'-' + f"\nData Testing report for {agent_name_input} agent\n"
 
-# print(datafile.validateColumns())
-# print(datafile.validateDataTime())
-# print(datafile.validateUniqueCol()) 
-# print(datafile.validateNonNullColumns())
-# print(datafile.validateCategoryWiseCount())
-# print(datafile.validateCompleteBlankCol())
+print(datafile.validateColumns())
+print(datafile.validateDataTime())
+print(datafile.validateUniqueCol()) 
+print(datafile.validateNonNullColumns())
+print(datafile.validateCategoryWiseCount())
+print(datafile.validateCompleteBlankCol())
 #
 
-Report = Report + f"1.{datafile.validateColumns()}\n2.{datafile.validateDataTime()}\n3.{datafile.validateNonNullColumns()}\n4.{datafile.validateCategoryWiseCount()}\n5.{datafile.validateCompleteBlankCol()}"
-print(Report)
+# Report = Report + f"1.{datafile.validateColumns()}\n2.{datafile.validateDataTime()}\n3.{datafile.validateNonNullColumns()}\n4.{datafile.validateCategoryWiseCount()}\n5.{datafile.validateCompleteBlankCol()}"
+# print(Report)

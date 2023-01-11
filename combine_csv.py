@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-SRC = r'C:\Users\Anjali_SEQ\Desktop\sally' #path of folder contain CSV
+SRC = r'C:\Users\Anjali_SEQ\Downloads\New folder (4)' #path of folder contain CSV
 
 
 def merge_csv():
@@ -12,7 +12,7 @@ def merge_csv():
         temp = pd.read_csv(f"{SRC}/{file}")
         data = pd.concat([data, temp])
 
-    data.to_csv(f"{SRC}/sallybeauty_20221213_044124.csv",index=False) #result file name - "Indeed.csv"
+    data.to_csv(f"{SRC}/dec13to15.csv",index=False) #result file name - "Indeed.csv"
 
 
 merge_csv()

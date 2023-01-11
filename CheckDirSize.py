@@ -7,7 +7,7 @@ Datalist = []
 Folder_name,Folder_path,folder_size,size_byte = [],[],[],[]
 
 directory_list = list()
-for root, dirs, files in os.walk(r'C:\Users\Anjali_SEQ\Documents\Sequentum Enterprise\Agents\test'):
+for root, dirs, files in os.walk(r'C:\Users\Anjali_SEQ\Documents\Sequentum Enterprise\Agents\test'): #Directory input path
     for name in dirs:
         directory_list.append(os.path.join(root, name))
 

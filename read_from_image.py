@@ -131,12 +131,14 @@ def readImage(imagePath):
     except:
         print ("Issue in conversion image - " + imagePath)
 
-    out_file1 = imagePath.split("\\")[-1]
-    out_file_name = out_file1.split(".")[0] + ".txt"
-    out_path = out_dir + out_file_name
-    fd = open(out_path, "w")
-    fd.write("%s" % imgText)
-    fd.close()
+    print(imgText)
+    # out_file1 = imagePath.split("\\")[-1]
+    # out_file_name = out_file1.split(".")[0] + ".txt"
+    # out_path = out_dir + out_file_name
+    # print(out_path)
+    # fd = open(out_path, "w")
+    # fd.write("%s" % imgText)
+    # fd.close()
 
     # print(imgText)
     return imgText
@@ -164,7 +166,7 @@ def main(path):
 
 if __name__ == '__main__':
     start = time.time()
-    main(path=r"C:\Users\anjali\Desktop\Covert_Image_to_Text\Anjali\1_5DT0111")
+    main(path=r"C:\Users\Anjali_SEQ\Desktop\FACEBOOK")
     
     end = time.time()
     print(end - start)
